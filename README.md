@@ -1,4 +1,4 @@
-# JASTICZH 
+# JASTICZSH 
 Just another scrip to install and "customize" zsh in Arch Linux. Hope it helps you!!
 
 ```
