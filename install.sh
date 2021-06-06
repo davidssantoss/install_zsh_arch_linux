@@ -83,6 +83,8 @@ if [[ $ans == 'Y' || $ans == 'y' || $ans == 'S' || $ans == 's' || $ans == '' ]];
             true
             ;;
     esac
+else
+    chsh -s $(which zsh)
 fi
 
 
@@ -94,7 +96,7 @@ cat <<'EOF'
     * Github: github.com/devsantos
 EOF
 
-echo -e "\n\nNow you should logout"
+echo -e "\nNow you should logout"
 
 # Log out session to apply changes 
 # Terminando la sesión para aplicar cambios de la shell
