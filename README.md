@@ -24,6 +24,11 @@ or
 bash install.sh
 ```
 
+## Example of the jasticzsh script
+
+
+![jasticzsh](https://raw.githubusercontent.com/devsantoss/jasticzsh-media/master/jasticzsh.gif)
+
 **Note: The script will do:**
 
 1. **Install zsh**
