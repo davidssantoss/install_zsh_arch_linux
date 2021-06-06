@@ -20,4 +20,4 @@ bash install.sh
 
 **2. Change your default shell to zsh**
 
-**3. Log out your session to apply changes after you login again open your terminal**
+**3. If you choose 'y' or 'Y' you will log out your session to apply changes after you login open your terminal**
