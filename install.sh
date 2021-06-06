@@ -87,7 +87,7 @@ else
     chsh -s $(which zsh)
 fi
 
-
+clear
 cat <<'EOF'
     Well done! you have installed zsh
     Thanks for using the script. Hope it helps you!
