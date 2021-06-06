@@ -63,15 +63,18 @@ if [[ $ans == 'Y' || $ans == 'y' || $ans == 'S' || $ans == 's' || $ans == '' ]];
     case $option  in
         1)
             install_ohmyzsh
-            echo "done!"
+            echo "Done!"
             ;;
         2)
      		install_ohmyzsh
             install_powerlevel10k
-            echo "done!"
+            echo "Done!"
             ;;
         0)
-     		echo "not customized"
+     		echo -e "\nNot customized\n"
+            # Change shell to zsh
+            # Cambiar de shell a zsh
+            chsh -s $(which zsh)
             ;;
         "")
             install_ohmyzsh
@@ -82,9 +85,16 @@ if [[ $ans == 'Y' || $ans == 'y' || $ans == 'S' || $ans == 's' || $ans == '' ]];
     esac
 fi
 
-# Change shell to zsh
-# Cambiar de shell a zsh
-chsh -s $(which zsh)
+
+cat <<'EOF'
+    Well done! you have installed zsh
+    Thanks for using the script. Hope it helps you!
+
+    Contact me: davsantos@pm.me
+    * Github: github.com/devsantos
+EOF
+
+echo -e "\n\nNow you should logout"
 
 # Log out session to apply changes 
 # Terminando la sesión para aplicar cambios de la shell
