@@ -50,8 +50,8 @@ install_powerlevel10k() {
     git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
     sed -i 's@^ZSH_THEME=.*$@ZSH_THEME="powerlevel10k/powerlevel10k"@g' ~/.zshrc            
 }
-
-read -n 1 -p "Would you like add customizations in zsh rigth now? :>[Y/n] " ans 
+clear
+read -n 1 -p "Would you like to add customizations in zsh rigth now? :>[Y/n] " ans 
 if [[ $ans == 'Y' || $ans == 'y' || $ans == 'S' || $ans == 's' || $ans == '' ]]; then
     clear
     echo -e "\t ***Install customization***"
