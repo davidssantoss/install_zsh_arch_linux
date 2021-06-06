@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# ¡¡¡ DO NOT RUN ON ROOT USER !!!
+#        DO NOT RUN ON ROOT USER !!!
+# ¡¡¡    No ejecutar el script con el usuario root !!!
 
 ############################################
 # Installation of zsh in Arch Linux
@@ -17,15 +18,11 @@ if [[ $uid -eq 0 ]]; then
     exit 0
 fi
 
-
-#Update, Download and upgrade packages
-#Actualizar, descargar e instalar paquetes
-sudo pacman -Syu 
-
 echo "Preparing the installation..."
-# Install zsh 
-# Instalar zsh
-sudo pacman -S zsh
+
+#Update, Download and upgrade packages and install zsh
+#Actualizar, descargar e instalar paquetes y instalar zsh
+sudo pacman -Syu zsh
 
 # Change shell to zsh
 # Cambiar de shell a zsh
