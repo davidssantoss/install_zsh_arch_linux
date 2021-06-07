@@ -50,42 +50,48 @@ install_powerlevel10k() {
     git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
     sed -i 's@^ZSH_THEME=.*$@ZSH_THEME="powerlevel10k/powerlevel10k"@g' ~/.zshrc            
 }
+
 clear
 read -n 1 -p "Would you like to add customizations in zsh rigth now? :>[Y/n] " ans 
-if [[ $ans == 'Y' || $ans == 'y' || $ans == 'S' || $ans == 's' || $ans == '' ]]; then
-    clear
-    echo -e "\t ***Install customization***"
-    echo -e "\n* Do you want to install oh-my-zsh? Type 1"
-    echo -e "* Do you want to install oh-my-zsh with theme powerlevel10k? Type 2"
-    echo -e "* By default will install oh-my-zsh"
-    echo -e "* Do not customizate! Type 0\n\n"
-    read -n 1 -p "Choose your option [1,2,0]:> " option
-    case $option  in
-        1)
-            install_ohmyzsh
-            echo "Done!"
-            ;;
-        2)
-     		install_ohmyzsh
-            install_powerlevel10k
-            echo "Done!"
-            ;;
-        0)
-     		echo -e "\nNot customized\n"
-            # Change shell to zsh
-            # Cambiar de shell a zsh
-            chsh -s $(which zsh)
-            ;;
-        "")
-            install_ohmyzsh
-            ;;
-        *)
-            true
-            ;;
-    esac
-else
-    chsh -s $(which zsh)
-fi
+case $ans in
+    Y*|y*|S*|s*|'')
+        clear
+        echo -e "\t ***Install customization***"
+        echo -e "\n* Do you want to install oh-my-zsh? Type 1"
+        echo -e "* Do you want to install oh-my-zsh with theme powerlevel10k? Type 2"
+        echo -e "* By default will install oh-my-zsh"
+        echo -e "* Do not customizate! Type 0\n\n"
+        read -n 1 -p "Choose your option [1,2,0]:> " option
+        case $option  in
+            1)
+                install_ohmyzsh
+                echo "Done!"
+                ;;
+            2)
+     	    	install_ohmyzsh
+                install_powerlevel10k
+                echo "Done!"
+                ;;
+            0)
+     	    	echo -e "\nNot customized\n"
+                # Change shell to zsh
+                # Cambiar de shell a zsh
+                chsh -s $(which zsh)
+                ;;
+            "")
+                install_ohmyzsh
+                ;;
+            *)
+                true
+                ;;
+        esac
+    N*|n*)
+        chsh -s $(which zsh)
+        ;;
+    *)
+        true
+        ;;
+esac
 
 clear
 cat <<'EOF'
@@ -103,13 +109,18 @@ echo -e "\nNow you should logout"
 
 if [[ $uid -ne 0 ]]; then
     read -n 1 -p 'This will kill your user session, proceed?[Y/n]:> ' answer
-    if [[ $answer == 'Y' || $answer == 'y' || $answer == 'S' || $answer == 's' || $answer == '' ]]; then
-        echo -e "\nlog out..."
-        sleep 5
-        sudo pkill -9 -u $uidn
-    else
-        exit 0
-    fi
+    case $ans in
+        Y*|y*|S*|s*|'')
+            echo -e "\nlog out..."
+            sleep 5
+            sudo pkill -9 -u $uidn
+        N*|n*)
+            chsh -s $(which zsh)
+            ;;
+        *)
+            true
+            ;;
+    esac
 else
     exit 0
 fi
