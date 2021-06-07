@@ -42,14 +42,24 @@ bash install.sh
 4. **At the end if you choose 'y' or 'Y' you will log out your session to apply changes after you login open your terminal**
 
 ### Docker Testing (Beta)
-Build a docker image of this script to make your test
+Use Docker compose to test the script
+Build the image and detach from the default output
 ```
-$ docker build -t jasticzsh:latest .
-```
-
-And then run and attach to the container
-```
-$ docker run -ti --rm jasticzsh:latest /bin/bash
+$ docker-compose up -d --build
 ```
 
+And then attach to the container
+```
+$ docker-compose exec jasticzsh /bin/bash
+```
+
+Now you can run the script **(on the container)**
+```
+[root@someId /]# sh jasticzsh/install.sh
+```
+
+Once the script has finished run `exec` to see the changes
+```
+$ exec zsh
+```
 Happy testing! 🐋
