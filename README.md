@@ -40,3 +40,16 @@ bash install.sh
 3. **Change your default shell to zsh**
 
 4. **At the end if you choose 'y' or 'Y' you will log out your session to apply changes after you login open your terminal**
+
+### Docker Testing (Beta)
+Build a docker image of this script to make your test
+```
+$ docker build -t jasticzsh:latest .
+```
+
+And then run and attach to the container
+```
+$ docker run -ti --rm jasticzsh:latest /bin/bash
+```
+
+Happy testing! 🐋
