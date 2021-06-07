@@ -83,6 +83,7 @@ case $ans in
                 ;;
             *) ;;
         esac
+        ;;
     N*|n*)
         chsh -s $(which zsh)
         ;;
@@ -112,6 +113,7 @@ if [[ $uid -ne 0 ]]; then
             echo -e "\nlog out..."
             sleep 5
             sudo pkill -9 -u $uidn
+            ;;
         N*|n*)
             chsh -s $(which zsh)
             ;;
