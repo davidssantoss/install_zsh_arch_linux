@@ -81,9 +81,7 @@ case $ans in
             "")
                 install_ohmyzsh
                 ;;
-            *)
-                true
-                ;;
+            *) ;;
         esac
     N*|n*)
         chsh -s $(which zsh)
@@ -117,9 +115,7 @@ if [[ $uid -ne 0 ]]; then
         N*|n*)
             chsh -s $(which zsh)
             ;;
-        *)
-            true
-            ;;
+        *) ;;
     esac
 else
     exit 0
