@@ -26,7 +26,12 @@ uid=$(id -u)
 uidn=$(id -u -n)
 
 if [[ $uid -eq 0 ]]; then
-    exit 0
+    ans="Y"
+    echo "Run this script as root may be insecure. Continue? [Y/n]"
+    read ans
+    if [ $ans -ne "Y" ]; then
+        exit 0
+    fi
 fi
 
 echo "Preparing the installation..."
