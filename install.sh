@@ -118,19 +118,6 @@ applychanges() {
 }
 
 main() {
-    preventroot
-
-    cat << 'EOF'
-
-       _           _   _              _     
-      (_) __ _ ___| |_(_) ___ _______| |__  
-      | |/ _` / __| __| |/ __|_  / __| '_ \ 
-      | | (_| \__ \ |_| | (__ / /\__ \ | | |
-     _/ |\__,_|___/\__|_|\___/___|___/_| |_|
-    |__/                                    
-    ... just another script to install and customizate zsh
-
-EOF
     echo "Preparing the installation..."
 
     if [[ -f /etc/os-release || -f /usr/lib/os-release ]]; then
@@ -159,4 +146,17 @@ EOF
         esac
     fi
 }
+
+preventroot
+ cat << 'EOF'
+
+       _           _   _              _     
+      (_) __ _ ___| |_(_) ___ _______| |__  
+      | |/ _` / __| __| |/ __|_  / __| '_ \ 
+      | | (_| \__ \ |_| | (__ / /\__ \ | | |
+     _/ |\__,_|___/\__|_|\___/___|___/_| |_|
+    |__/                                    
+    ... just another script to install and customizate zsh
+
+EOF
 main 
