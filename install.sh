@@ -116,7 +116,7 @@ applychanges() {
             *) ;;
         esac
     else
-        exit 0
+        exec zsh -l
     fi
 }
 
