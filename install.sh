@@ -150,7 +150,10 @@ EOF
                 applychanges
                 ;;
             'debian'|'ubuntu'|'linux mint'|'parrot os'|'kali linux'|'mx linux'|'deepin'|'devuan'|'pureos'|'tails')
-                #TODO: implementation SOON
+                sudo apt update && sudo apt install zsh
+                customize
+                coninfo
+                applychanges
                 ;;
             *) ;;
         esac
