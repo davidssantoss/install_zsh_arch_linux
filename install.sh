@@ -135,10 +135,10 @@ main() {
 
 EOF
     echo "Preparing the installation..."
-    if [[ -f /etc/os-release || -f /usr/lib/os-release ]]; then
+    if [[ -f /etc/os-release || -f /usr/lib/os-release || -f /etc/lsb-release ]]; then
         # Source the os-release file
-        for file in /etc/os-release /usr/lib/os-release; do
-            source "$file" && echo $file && break
+        for file in /etc/os-release /usr/lib/os-release /etc/lsb-release; do
+            source "$file" && break
         done
         distro="${NAME:-${DISTRIB_ID}}"
         distroName=${distro,,}
