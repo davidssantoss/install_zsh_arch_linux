@@ -11,17 +11,20 @@
 
 
 # Variables
-UID=$(id -u)
-UIDN=$(id -u -n)
+uid=$(id -u)
+uidn=$(id -u -n)
 
 preventroot() {
-    if [[ $UID -eq 0 ]]; then
-        ans="Y"
-        echo "Run this script as root may be insecure. Continue? [Y/n]"
-        read ans
-        if [ $ans -ne "Y" ]; then
-            exit 0
-        fi
+    if [[ $uid -eq 0 ]]; then        
+        read -p "Run this script as root may be insecure. Continue? [Y/n]" answ        
+        case $answ in
+            Y*|y*)
+                true
+                ;;
+            *) 
+                echo "Running by your own risk"
+                exit 0 ;;
+        esac
     fi
 }
 
@@ -99,13 +102,13 @@ applychanges() {
     # Log out session to apply changes 
     # Terminando la sesión para aplicar cambios de la shell
 
-    if [[ $UID -ne 0 ]]; then
+    if [[ $uid -ne 0 ]]; then
         read -n 1 -p 'This will kill your user session, proceed?[Y/n]:> ' answer
         case $ans in
             Y*|y*|S*|s*|'')
                 echo -e "\nlog out..."
                 sleep 5
-                sudo pkill -9 -u $UIDN
+                sudo pkill -9 -u $uidn
                 ;;
             N*|n*)
                 exec zsh -l
@@ -118,6 +121,19 @@ applychanges() {
 }
 
 main() {
+
+    preventroot
+     cat << 'EOF'
+
+           _           _   _              _     
+          (_) __ _ ___| |_(_) ___ _______| |__  
+          | |/ _` / __| __| |/ __|_  / __| '_ \ 
+          | | (_| \__ \ |_| | (__ / /\__ \ | | |
+         _/ |\__,_|___/\__|_|\___/___|___/_| |_|
+        |__/                                    
+        ... just another script to install and customizate zsh
+
+EOF
     echo "Preparing the installation..."
     if [[ -f /etc/os-release || -f /usr/lib/os-release ]]; then
         # Source the os-release file
@@ -146,16 +162,4 @@ main() {
     fi
 }
 
-preventroot
- cat << 'EOF'
-
-       _           _   _              _     
-      (_) __ _ ___| |_(_) ___ _______| |__  
-      | |/ _` / __| __| |/ __|_  / __| '_ \ 
-      | | (_| \__ \ |_| | (__ / /\__ \ | | |
-     _/ |\__,_|___/\__|_|\___/___|___/_| |_|
-    |__/                                    
-    ... just another script to install and customizate zsh
-
-EOF
 main 
