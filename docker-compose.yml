@@ -1,0 +1,9 @@
+version: '3.3'
+
+services:
+    jasticzsh:
+        build: .
+        container_name: jasticzsh
+        volumes: 
+            - .:/jasticzsh
+        command: sh -c "ping localhost $$2>> /dev/null"

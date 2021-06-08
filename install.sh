@@ -38,7 +38,7 @@ echo "Preparing the installation..."
 
 #Update, Download and upgrade packages also install zsh and git
 #Actualizar, descargar e instalar paquetes tambien instalar zsh y git
-sudo pacman -Syu --needed base-devel zsh git 
+sudo pacman -Syu --needed sed zsh git 
 
 # Customizing zsh
 
