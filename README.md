@@ -1,6 +1,6 @@
 # JASTICZSH 
 Just another scrip to install and "customize" zsh in
-* Arch Linux and derivates(beta). 
+* Arch Linux and derivates. 
 * Debian and derivates (beta)
 * rpm and independent distros SOON!
 Hope it helps you!!
