@@ -11,11 +11,11 @@
 
 
 # Variables
-uid=$(id -u)
-uidn=$(id -u -n)
+UID=$(id -u)
+UIDN=$(id -u -n)
 
 preventroot() {
-    if [[ $uid -eq 0 ]]; then
+    if [[ $UID -eq 0 ]]; then
         ans="Y"
         echo "Run this script as root may be insecure. Continue? [Y/n]"
         read ans
@@ -99,13 +99,13 @@ applychanges() {
     # Log out session to apply changes 
     # Terminando la sesión para aplicar cambios de la shell
 
-    if [[ $uid -ne 0 ]]; then
+    if [[ $UID -ne 0 ]]; then
         read -n 1 -p 'This will kill your user session, proceed?[Y/n]:> ' answer
         case $ans in
             Y*|y*|S*|s*|'')
                 echo -e "\nlog out..."
                 sleep 5
-                sudo pkill -9 -u $uidn
+                sudo pkill -9 -u $UIDN
                 ;;
             N*|n*)
                 exec zsh -l
@@ -119,7 +119,6 @@ applychanges() {
 
 main() {
     echo "Preparing the installation..."
-
     if [[ -f /etc/os-release || -f /usr/lib/os-release ]]; then
         # Source the os-release file
         for file in /etc/os-release /usr/lib/os-release; do
