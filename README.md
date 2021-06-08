@@ -23,7 +23,7 @@ To run the script you just need **bash** or another **shell** and type:
 sh install.sh
 ```
 
-or
+**Recommended**
 ```
 bash install.sh
 ```
@@ -60,10 +60,5 @@ $ docker-compose exec jasticzsh /bin/bash
 Now you can run the script **(on the container)**
 ```
 [root@someId /]# sh jasticzsh/install.sh
-```
-
-Once the script has finished run `exec` to see the changes
-```
-$ exec zsh
 ```
 Happy testing! 🐋
