@@ -43,6 +43,18 @@ install_powerlevel10k() {
     git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
     sed -i 's@^ZSH_THEME=.*$@ZSH_THEME="powerlevel10k/powerlevel10k"@g' ~/.zshrc            
 }
+add_plugins_debian() {
+    echo "Installing plugins: syntax highlightinh and autosuggestions"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    sed -i 's@^plugins=.*$@plugins=(git zsh-autosuggestions zsh-syntax-highlighting)@g' ~/.zshrc
+}
+add_plugins_arch() {
+    echo "Installing plugins: syntax highlightinh and autosuggestions"
+    sudo pacman -S --needed zsh-syntax-highlighting zsh-autosuggestions
+    echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc 
+    echo "source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+}
 customize() {
     clear
     read -n 1 -p "Would you like to add customizations in zsh rigth now? :>[Y/n] " ans 
@@ -61,7 +73,7 @@ customize() {
                     echo "Done!"
                     ;;
                 2)
-         	    	install_ohmyzsh
+         	    install_ohmyzsh
                     install_powerlevel10k
                     echo "Done!"
                     ;;
@@ -87,13 +99,13 @@ customize() {
 }
 coninfo() {
     clear
-    cat <<'EOF'
+    cat <<INFO
         Well done! you have installed zsh
         Thanks for using the script. Hope it helps you!
 
         Contact me: davsantos@pm.me
         * Github: github.com/devsantos
-EOF
+INFO
 }
 
 applychanges() {
@@ -104,7 +116,7 @@ applychanges() {
 
     if [[ $uid -ne 0 ]]; then
         read -n 1 -p 'This will kill your user session, proceed?[Y/n]:> ' answer
-        case $ans in
+        case $answer in
             Y*|y*|S*|s*|'')
                 echo -e "\nlog out..."
                 sleep 5
@@ -148,12 +160,14 @@ EOF
                 #Actualizar, descargar e instalar paquetes tambien instalar zsh y git
                 sudo pacman -Syu --needed sed zsh git 
                 customize
-                coninfo
+		add_plugins_arch
+		coninfo
                 applychanges
                 ;;
             'debian'|'ubuntu'|'linux mint'|'parrot os'|'kali linux'|'mx linux'|'deepin'|'devuan'|'pureos'|'tails')
-                sudo apt update && sudo apt install zsh
+                sudo apt update && sudo apt install zsh git
                 customize
+		add_plugins_debian
                 coninfo
                 applychanges
                 ;;
@@ -161,5 +175,4 @@ EOF
         esac
     fi
 }
-
-main 
+main
